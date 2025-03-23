@@ -1,0 +1,29 @@
+pool:
+ vmImage: 'ubuntu-20.04'
+steps:
+- task: JFrogNpm@1
+ inputs:
+   command: 'pack and publish'
+   artifactoryConnection: 'shivani'
+   targetRepo: 'shivani-npm-local'
+   workingFolder: 'npm3/'
+   collectBuildInfo: true
+   buildName: '$(Build.DefinitionName)'
+   buildNumber: '$(Build.BuildNumber)'
+- task: JFrogPublishBuildInfo@1
+ inputs:
+   artifactoryConnection: 'shivani'
+   buildName: '$(Build.DefinitionName)'
+   buildNumber: '$(Build.BuildNumber)'
+- task: JFrogBuildPromotion@1
+ inputs:
+   artifactoryConnection: 'shivani'
+   buildName: '$(Build.DefinitionName)'
+   buildNumber: '$(Build.BuildNumber)'
+   targetRepo: 'shivani-promotion-local'
+   status: 'Released'
+   comment: 'Released'
+   sourceRepo: 'shivani-npm-local'
+   includeDependencies: false
+   copy: true
+   dryRun: false
