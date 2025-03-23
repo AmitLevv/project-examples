@@ -32,7 +32,7 @@ steps:
   inputs:
     command: 'jf npm publish --build-name $(Build.DefinitionName) --build-number $(Build.BuildNumber)'
              
-    workingDirectory: '/npm-exapmle'
+    workingDirectory: '/npm-example'
 - task: JfrogCliV2@1
   inputs:
     jfrogPlatformConnection: 'amitlAzureDev'
