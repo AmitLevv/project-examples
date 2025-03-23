@@ -17,12 +17,12 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-
 - task: JFrogNpm@1
   inputs:
     command: 'install'
     artifactoryConnection: 'JFrog Artifactory V2'
     sourceRepo: 'amitl-npm'
+    workingFolder: '/npm-example'
     collectBuildInfo: true
     threads: '1'
     buildName: '$(Build.DefinitionName)'
